@@ -16,12 +16,12 @@ export async function OPTIONS(req: Request) {
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
-        const project_id = searchParams.get("project_id");
-        const thread_id = searchParams.get("thread_id");
+        const project_slug = searchParams.get("project_slug");
+        const thread_slug = searchParams.get("thread_slug");
 
-        if (!project_id || !thread_id) {
+        if (!project_slug || !thread_slug) {
             return new Response(
-                JSON.stringify({ message: "Missing required query parameters: project_id or thread_id" }),
+                JSON.stringify({ message: "Missing required query parameters: Project slug or thread slug" }),
                 {
                     status: 400,
                     headers: {
@@ -35,8 +35,8 @@ export async function GET(request: Request) {
         const { data, error } = await supabaseAdmin
             .from("comments")
             .select("id, parent_id, author_name, content, likes, dislikes, created_at")
-            .eq("project_id", project_id)
-            .eq("thread_id", thread_id)
+            .eq("project_slug", project_slug)
+            .eq("thread_slug", thread_slug)
             .order("created_at", { ascending: true });
 
         if (error) {
@@ -72,9 +72,9 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { project_id, thread_id, parent_id, author_name, content } = body;
+        const { project_slug, thread_slug , parent_id, author_name, content } = body;
 
-        if (!thread_id || !project_id || !author_name || !content) {
+        if (!project_slug || !thread_slug || !author_name || !content) {
             return new Response(JSON.stringify({ message: "Missing field(s) in post comment" }), {
                 status: 400,
                 headers: {
@@ -85,8 +85,8 @@ export async function POST(request: Request) {
         }
 
         const { error } = await supabaseAdmin.from("comments").insert({
-            thread_id,
-            project_id,
+            project_slug,
+            thread_slug,
             parent_id,
             author_name,
             content,
@@ -106,8 +106,8 @@ export async function POST(request: Request) {
         return new Response(
             JSON.stringify({
                 message: "Successfully posted comment",
-                thread_id,
-                project_id,
+                project_slug,
+                thread_slug,
                 parent_id,
                 author_name,
                 content,

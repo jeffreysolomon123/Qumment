@@ -27,7 +27,7 @@ export default function CommentFetcher() {
 
         try {
             const res = await fetch(
-                `/api/comment?project_id=${projectId}&thread_id=${threadId}`
+                `/api/comment?project_slug=${projectId}&thread_slug=${threadId}`
             );
             const result = await res.json();
 
@@ -51,13 +51,13 @@ export default function CommentFetcher() {
             <CardContent className="space-y-4">
                 <div className="space-y-2">
                     <Input
-                        placeholder="Project ID"
+                        placeholder="Project Slug"
                         value={projectId}
                         onChange={(e) => setProjectId(e.target.value)}
                         required
                     />
                     <Input
-                        placeholder="Thread ID"
+                        placeholder="Thread Slug"
                         value={threadId}
                         onChange={(e) => setThreadId(e.target.value)}
                         required

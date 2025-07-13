@@ -25,8 +25,8 @@ export default function CommentForm() {
             body: JSON.stringify({
                 author_name: authorName,
                 content,
-                project_id: projectId,
-                thread_id: threadId,
+                project_slug: projectId,
+                thread_slug: threadId,
                 parent_id: parentId.trim() === "" ? null : parentId,
             }),
         });
@@ -65,13 +65,13 @@ export default function CommentForm() {
                         required
                     />
                     <Input
-                        placeholder="Project ID"
+                        placeholder="Project Slug"
                         value={projectId}
                         onChange={(e) => setProjectId(e.target.value)}
                         required
                     />
                     <Input
-                        placeholder="Thread ID"
+                        placeholder="Thread Slug"
                         value={threadId}
                         onChange={(e) => setThreadId(e.target.value)}
                         required
