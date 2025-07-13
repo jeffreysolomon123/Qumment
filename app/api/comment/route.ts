@@ -16,7 +16,7 @@ export async function GET(request: Request) {
             });
         }
 
-        const {data, error} = await supabaseAdmin.from("comments").select('parent_id, author_name,content, created_at').eq("project_id",project_id).eq("thread_id",thread_id).order("created_at", { ascending: true });
+        const {data, error} = await supabaseAdmin.from("comments").select('id,parent_id, author_name,content,likes, dislikes, created_at').eq("project_id",project_id).eq("thread_id",thread_id).order("created_at", { ascending: true });
 
         if(error){
             console.error(error);
