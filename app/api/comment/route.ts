@@ -90,6 +90,8 @@ export async function POST(request: Request) {
             parent_id,
             author_name,
             content,
+            likes: body.likes ?? 0,
+            dislikes: body.dislikes ?? 0,
         });
 
         if (error) {

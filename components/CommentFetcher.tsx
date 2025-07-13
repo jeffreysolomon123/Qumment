@@ -27,7 +27,7 @@ export default function CommentFetcher() {
 
         try {
             const res = await fetch(
-                `/api/comment?project_slug=${projectId}&thread_slug=${threadId}`
+                `http://qumment.vercel.app/api/comment?project_slug=${projectSlug}&thread_slug=${threadSlug}`
             );
             const result = await res.json();
 
