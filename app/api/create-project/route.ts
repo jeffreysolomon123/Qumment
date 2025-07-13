@@ -1,5 +1,4 @@
 import {createClient} from "@/lib/supabase/server";
-import {randomBytes} from "node:crypto";
 
 export async function POST(request:Request) {
     try {
@@ -45,12 +44,10 @@ export async function POST(request:Request) {
             }
 
 
-            const apiKey = randomBytes(16).toString('hex');
             const {error : insertError} = await supabase.from("projects").insert({
                 user_id : data?.user?.id,
                 name : name,
                 slug : slugName,
-                api_key : apiKey,
             })
 
             if(insertError) return new Response(JSON.stringify({
@@ -63,7 +60,6 @@ export async function POST(request:Request) {
             return new Response(JSON.stringify({
                 message : "Successfully created project",
                 slug: slugName,
-                apiKey,
             }), {
                 status : 200,
                 headers: { "Content-Type": "application/json" }

@@ -3,6 +3,9 @@ import { redirect } from "next/navigation";
 import { ProjectForm } from "@/components/ProjectForm";
 import { InfoIcon } from "lucide-react";
 import { FetchDataSteps } from "@/components/tutorial/fetch-data-steps";
+import {ThreadForm} from "@/components/ThreadForm";
+import CommentForm from "@/components/CommentForm";
+import CommentFetcher from "@/components/CommentFetcher";
 
 export default async function ProtectedPage() {
     const supabase = await createClient();
@@ -36,6 +39,9 @@ export default async function ProtectedPage() {
 
 
             <ProjectForm />
+            <ThreadForm />
+            <CommentForm />
+            <CommentFetcher />
         </div>
     );
 }
