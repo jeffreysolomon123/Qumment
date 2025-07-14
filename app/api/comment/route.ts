@@ -34,7 +34,7 @@ export async function GET(request: Request) {
 
         const { data, error } = await supabaseAdmin
             .from("comments")
-            .select("id, parent_id, author_name, content, likes, dislikes, created_at")
+            .select("id, parent_id, author_name, content, created_at")
             .eq("project_slug", project_slug)
             .eq("thread_slug", thread_slug)
             .order("created_at", { ascending: true });
@@ -90,8 +90,6 @@ export async function POST(request: Request) {
             parent_id,
             author_name,
             content,
-            likes: body.likes ?? 0,
-            dislikes: body.dislikes ?? 0,
         });
 
         if (error) {
