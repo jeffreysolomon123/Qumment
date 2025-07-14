@@ -17,13 +17,16 @@ export async function OPTIONS() {
 // PATCH handler: update likes or dislikes
 export async function PATCH(request: Request) {
     try {
-        const { comment_id, field, increment } = await request.json();
+        const { comment_id, field, increment, reverseField, decrement } = await request.json();
 
         // ✅ Validate input
+        const validFields = ["likes", "dislikes"];
         if (
             !comment_id ||
-            (field !== "likes" && field !== "dislikes") ||
-            typeof increment !== "number"
+            !validFields.includes(field) ||
+            typeof increment !== "number" ||
+            (reverseField && !validFields.includes(reverseField)) ||
+            (reverseField && typeof decrement !== "number")
         ) {
             return new Response(JSON.stringify({ message: "Invalid request" }), {
                 status: 400,
@@ -31,31 +34,24 @@ export async function PATCH(request: Request) {
             });
         }
 
-        // ✅ Fetch current value
-        const { data, error: fetchError } = await supabaseAdmin
-            .from("comments")
-            .select(field)
-            .eq("id", comment_id)
-            .single();
+        // ✅ Build update object
+        const updateFields: Record<string, number> = {};
+        updateFields[field] = increment;
 
-        if (fetchError || !data) {
-            return new Response(JSON.stringify({ message: "Comment not found" }), {
-                status: 404,
-                headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
-            });
+        if (reverseField) {
+            updateFields[reverseField] = -decrement;
         }
 
-        const currentValue = data[field] || 0;
-        const updatedValue = Number(currentValue) + increment;
+        // ✅ Run atomic update using Postgres math
+        const { error } = await supabaseAdmin.rpc("increment_fields", {
+            comment_id,
+            likes_inc: field === "likes" ? increment : reverseField === "likes" ? -decrement : 0,
+            dislikes_inc: field === "dislikes" ? increment : reverseField === "dislikes" ? -decrement : 0,
+        });
 
-        // ✅ Update field
-        const { error: updateError } = await supabaseAdmin
-            .from("comments")
-            .update({ [field]: updatedValue })
-            .eq("id", comment_id);
-
-        if (updateError) {
-            return new Response(JSON.stringify({ message: "Failed to update" }), {
+        if (error) {
+            console.error("Update error:", error);
+            return new Response(JSON.stringify({ message: "Failed to update counts" }), {
                 status: 500,
                 headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
             });
