@@ -10,6 +10,10 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
+  if(request.nextUrl.pathname === "/api/update-like") {
+    return supabaseResponse;
+  }
+
   if (!hasEnvVars) {
     return supabaseResponse;
   }
