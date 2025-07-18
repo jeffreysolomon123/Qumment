@@ -1,8 +1,8 @@
 import NavBar from "@/components/NavBar";
-import DarkVeil from "@/components/DarkVeil";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from 'next/image'
+import backgroundimage from "../public/bg.png"
 import commentsection from "../public/high-quality-comment.jpg"
 
 
@@ -14,10 +14,17 @@ export default function Home() {
         <div className="relative w-full flex-1 overflow-hidden">
           {/* DarkVeil as background */}
             <div className="absolute inset-0 z-0">
-                <DarkVeil hueShift={328} />
+                <Image
+                    src={backgroundimage}
+                    alt="Background"
+                    fill
+                    priority
+                    className="object-cover w-full h-full"
+                />
             </div>
 
-          {/* Content on top of DarkVeil */}
+
+            {/* Content on top of DarkVeil */}
           <div className="flex flex-col relative z-10 items-center justify-center h-full">
 
 
@@ -39,7 +46,7 @@ export default function Home() {
 
           </div>
             <div className="flex justify-center w-full mt-16 overflow-hidden">
-                <div className="w-full max-w-2xl h-[90vh] translate-x-10 sm:h-[54vh] relative overflow-hidden">
+                <div className="w-full max-w-2xl h-[70vh] translate-x-10 sm:h-[54vh] relative overflow-hidden">
                     <Image
                         className="opacity-90 rounded-t-3xl rounded-b-xl object-left object-cover sm:object-top "
                         src={commentsection}
