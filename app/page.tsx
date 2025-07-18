@@ -21,10 +21,10 @@ export default function Home() {
           <div className="flex flex-col relative z-10 items-center justify-center h-full">
 
 
-              <h1 className="text-center mona-sans-extrabold text-5xl leading-[1.2] mt-16 text-gray-300">Super Lightweight, Blazing Fast
+              <h1 className="text-center mona-sans-extrabold text-2xl mx-5 sm:mx-0 sm:text-5xl leading-snug mt-20 text-gray-300">Super Lightweight, Blazing Fast
                   <br />Comment Section</h1>
 
-                <h2 className="mona-sans-light text-md mt-6">Qumment is a plug-and-play comment widget with built-in
+                <h2 className="mona-sans-regular text-md mt-6 text-center mx-7 sm:mx-0 text-gray-200">Qumment is a plug-and-play comment widget with built-in
                     AI profanity filtering, privacy-centered with no ads</h2>
               <div className="flex gap-4 mt-10">
                   <Button asChild size="sm" className="main-color-bg  text-md px-5 py-3 hover:bg-[#6C0E82]">
@@ -39,9 +39,9 @@ export default function Home() {
 
           </div>
             <div className="flex justify-center w-full mt-16 overflow-hidden">
-                <div className="w-full max-w-2xl h-[50vh] relative overflow-hidden">
+                <div className="w-full max-w-2xl h-[90vh] translate-x-10 sm:h-[54vh] relative overflow-hidden">
                     <Image
-                        className="rounded-t-3xl rounded-b-xl object-top object-cover"
+                        className="opacity-90 rounded-t-3xl rounded-b-xl object-left object-cover sm:object-top "
                         src={commentsection}
                         alt="comment section"
                         fill // keep this

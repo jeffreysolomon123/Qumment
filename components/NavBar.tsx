@@ -12,11 +12,11 @@ export default function NavBar() {
                 </div>
                 {/*{!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}*/}
             </div>
-            <div className="flex gap-4 items-center">
-                <Link href="/docs" className="shadow-inner-lg text-sm">Docs</Link>
-                <Link href="/auth/login" className="hidden sm:block shadow-inner-lg text-sm">Sign in</Link>
-                <Button asChild size="sm" className="main-color-bg text-sm hover:bg-[#6C0E82]">
-                    <Link href="/auth/sign-up" className="shadow-inner-lg text-white">Get Started</Link>
+            <div className="flex gap-4 items-center mr-6">
+                <Link href="/docs" className="shadow-inner-lg text-md">Docs</Link>
+                <Link href="/auth/login" className="hidden sm:block shadow-inner-lg text-md">Sign in</Link>
+                <Button asChild size="sm" className="main-color-bg text-md hover:bg-[#6C0E82]">
+                    <Link href="/auth/sign-up" className="shadow-inner-lg text-white text-md">Get Started</Link>
                 </Button>
             </div>
         </nav>
