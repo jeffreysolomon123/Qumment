@@ -4,9 +4,6 @@ import NavBar from "@/components/NavBar";
 import Sidebar from "@/components/Sidebar";
 
 
-interface SidebarProps {
-    isActivePage : string;
-}
 
 export default async function Dashboard() {
     const supabase = await createClient();
@@ -18,7 +15,7 @@ export default async function Dashboard() {
 
     return (
         <div className="min-h-screen flex flex-col">
-            <NavBar isLogoutVisible={true} pushSideway={true}/>
+            <NavBar isLogoutVisible={true} />
 
             {/* Responsive wrapper with side space only on large screens */}
             <div className="flex-1 flex justify-center ">

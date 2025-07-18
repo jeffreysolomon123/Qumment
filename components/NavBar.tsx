@@ -6,7 +6,6 @@ import {LogoutButton} from "@/components/logout-button";
 
 interface Props {
     isLogoutVisible?: boolean;
-    pushSideway? : boolean;
 }
 
 export default async function NavBar({ isLogoutVisible }: Props) {

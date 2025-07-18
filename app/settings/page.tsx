@@ -6,7 +6,7 @@ import Sidebar from "@/components/Sidebar";
 
 
 
-export default async function ProjectsPage() {
+export default async function SeetingsPage() {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.getUser();
 
@@ -27,7 +27,7 @@ export default async function ProjectsPage() {
 
                     {/* Main content */}
                     <main className="flex-1 p-6 bg-[#121212] border-[#212121] border-l-2 w-16">
-                        Projects
+                        Settings
                     </main>
                 </div>
             </div>
