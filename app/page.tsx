@@ -3,27 +3,20 @@ import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from 'next/image'
 import commentsection from "../public/high-quality-comment.jpg"
+import {createClient} from "@/lib/supabase/server";
 
 
-export default function Home() {
+export default async function Home() {
+    const supabase = await createClient();
+    const { data, error } = await supabase.auth.getUser();
+
   return (
+
       <main className="min-h-screen w-full flex flex-col mona-sans-regular">
         <NavBar />
 
         <div className="gradient-bg relative w-full flex-1 overflow-hidden">
-          {/* DarkVeil as background */}
-          {/*  <div className="absolute inset-0 z-0">*/}
-          {/*      <Image*/}
-          {/*          src={backgroundimage}*/}
-          {/*          alt="Background"*/}
-          {/*          fill*/}
-          {/*          priority*/}
-          {/*          className="object-cover w-full h-full"*/}
-          {/*      />*/}
-          {/*  </div>*/}
 
-
-            {/* Content on top of DarkVeil */}
           <div className="flex flex-col relative z-10 items-center justify-center h-full">
 
 
@@ -33,9 +26,15 @@ export default function Home() {
                 <h2 className="mona-sans-regular text-md mt-6 text-center mx-7 sm:mx-0 text-gray-200">Qumment is a plug-and-play comment widget with built-in
                     AI profanity filtering, privacy-centered with no ads</h2>
               <div className="flex gap-4 mt-10">
-                  <Button asChild size="sm" className="main-color-bg  text-md px-5 py-3 hover:bg-[#6C0E82]">
-                      <Link href="/auth/sign-up" className="shadow-inner-lg text-white">Get Started</Link>
-                  </Button>
+                  {!data?.user ? (
+                      <Button asChild size="sm" className="main-color-bg text-md hover:bg-[#6C0E82]">
+                          <Link href="/auth/sign-up" className="shadow-inner-lg text-white text-md">Get Started</Link>
+                      </Button>
+                  ) : (
+                      <Button asChild size="sm" className="main-color-bg text-md hover:bg-[#6C0E82]">
+                          <Link href="/dashboard" className="shadow-inner-lg text-white text-md">Dashboard</Link>
+                      </Button>
+                  )}
                   <Button asChild size="sm" className="bg-transparent text-md px-5 py-3 hover:bg-transparent border-2 border-[#592166]">
                       <Link href="/docs" className="text-white">Docs</Link>
                   </Button>
