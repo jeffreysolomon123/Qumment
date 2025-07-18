@@ -144,6 +144,8 @@
   display: block;
 }
 
-.inner-text-shadow {
+.gradient-bg{
+  background: #111111;
+  background: radial-gradient(circle,rgba(17, 17, 17, 1) 47%, rgb(33, 7, 37) 100%);
 
 }

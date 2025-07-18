@@ -2,7 +2,6 @@ import NavBar from "@/components/NavBar";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from 'next/image'
-import backgroundimage from "../public/bg.png"
 import commentsection from "../public/high-quality-comment.jpg"
 
 
@@ -11,17 +10,17 @@ export default function Home() {
       <main className="min-h-screen w-full flex flex-col mona-sans-regular">
         <NavBar />
 
-        <div className="relative w-full flex-1 overflow-hidden">
+        <div className="gradient-bg relative w-full flex-1 overflow-hidden">
           {/* DarkVeil as background */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src={backgroundimage}
-                    alt="Background"
-                    fill
-                    priority
-                    className="object-cover w-full h-full"
-                />
-            </div>
+          {/*  <div className="absolute inset-0 z-0">*/}
+          {/*      <Image*/}
+          {/*          src={backgroundimage}*/}
+          {/*          alt="Background"*/}
+          {/*          fill*/}
+          {/*          priority*/}
+          {/*          className="object-cover w-full h-full"*/}
+          {/*      />*/}
+          {/*  </div>*/}
 
 
             {/* Content on top of DarkVeil */}
