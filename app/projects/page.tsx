@@ -16,7 +16,7 @@ export default async function ProjectsPage() {
 
     return (
         <div className="min-h-screen flex flex-col">
-            <NavBar isLogoutVisible={true} pushSideway={true}/>
+            <NavBar isLogoutVisible={true} />
 
             <div className="flex-1 flex justify-center ">
                 <div className="flex w-full">
