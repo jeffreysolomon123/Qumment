@@ -86,10 +86,7 @@ export default function DarkVeil({
     const ref = useRef(null);
     useEffect(() => {
         const canvas = ref.current;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         const parent = canvas.parentElement;
-
 
         const renderer = new Renderer({
             dpr: Math.min(window.devicePixelRatio, 2),
