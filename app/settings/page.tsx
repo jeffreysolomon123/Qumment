@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import {createClient} from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import NavBar from "@/components/NavBar";
 import Sidebar from "@/components/Sidebar";
@@ -22,7 +22,7 @@ export default async function SeetingsPage() {
                 <div className="flex w-full">
                     {/* Sidebar */}
                     <aside className="w-16 sm:w-64 bg-[#121212] border-[#212121]  transition-all duration-300">
-                        <Sidebar isActivePage={"projects"} />
+                        <Sidebar isActivePage={"settings"} />
                     </aside>
 
                     {/* Main content */}

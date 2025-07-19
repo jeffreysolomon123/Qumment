@@ -63,13 +63,14 @@ function SidebarLink({
                 "w-full rounded-sm text-sm justify-start px-4 text-white",
                 {
                     "bg-[#6C0E82] shadow-inner-lg hover:bg-[#6C0E82] active:bg-[#6C0E82]": isActive,
-                    "bg-transparent hover:bg-[#3C3C3C] active:bg-[#3C3C3C]": !isActive,
+                    "bg-transparent hover:bg-[#252525] active:bg-[#252525]": !isActive,
                 }
             )}
         >
             <Link
                 href={href}
                 className="flex items-center gap-2 mona-sans-semibold w-full"
+                prefetch={true}
             >
                 {icon}
                 <span className="hidden sm:inline">{label}</span>
