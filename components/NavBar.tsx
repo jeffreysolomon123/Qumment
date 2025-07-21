@@ -1,18 +1,16 @@
+'use client'
 import React from "react";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
-import {createClient} from "@/lib/supabase/server";
 import {LogoutButton} from "@/components/logout-button";
-import { redirect } from 'next/navigation'
+import {useAuthStore} from "@/store/useAuthStore";
 
 interface Props {
     isLogoutVisible?: boolean;
 }
 
-export default async function NavBar({ isLogoutVisible }: Props) {
-            const supabase = await createClient();
-            const { data, error } = await supabase.auth.getUser();
-
+export default function NavBar({ isLogoutVisible }: Props) {
+           const user = useAuthStore((state) => state.user);
 
     return (
         <nav className="w-full flex justify-center border-b border-b-foreground/10 h-[55px] overflow-hidden mona-sans-regular">
@@ -69,10 +67,10 @@ export default async function NavBar({ isLogoutVisible }: Props) {
                     <LogoutButton />
                 )}
 
-                {!data?.user ? (
+                {!user? (
                     <Link href="/auth/login" className="hidden sm:block shadow-inner-lg text-md whitespace-nowrap">Sign in</Link>
                 ) : null}
-                {!data?.user ? (
+                {!user ? (
                     <Button asChild size="sm" className="main-color-bg text-md hover:bg-[#6C0E82]">
                         <Link href="/auth/sign-up" className="shadow-inner-lg text-white text-md">Get Started</Link>
                     </Button>
