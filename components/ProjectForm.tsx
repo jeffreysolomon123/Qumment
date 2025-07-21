@@ -24,7 +24,6 @@ export function ProjectForm() {
 
         if (res.ok) {
             setMessage("✅ Project created: " + result.slug);
-            redi
         } else {
             setMessage("❌ Error: " + result.message);
         }
