@@ -3,6 +3,7 @@ import Sidebar from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import {createClient} from "@/lib/supabase/server";
 import {redirect} from "next/navigation";
+import Link from "next/link";
 import {
     Card, CardContent,
     CardDescription,
@@ -14,6 +15,7 @@ import {ChevronRight, Plus} from "lucide-react";
 
 
 export default async function ProjectsPage() {
+
     const supabase = await createClient();
     const { data: userData, error: userError } = await supabase.auth.getUser();
 
@@ -77,7 +79,7 @@ export default async function ProjectsPage() {
                                 >
                                     <div className="flex items-center justify-center gap-3 flex-col">
                                         <Plus className="text-3xl scale-110" />
-                                        <CardContent>Create a new Project</CardContent>
+                                        <Link href="/new-project"><CardContent>Create a new Project</CardContent></Link>
                                     </div>
 
                                 </Card>

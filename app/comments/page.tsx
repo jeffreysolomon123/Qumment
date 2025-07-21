@@ -7,12 +7,6 @@ import Sidebar from "@/components/Sidebar";
 
 
 export default async function CommentsPage() {
-    const supabase = await createClient();
-    const { data, error } = await supabase.auth.getUser();
-
-    if (error || !data?.user) {
-        redirect("/auth/login");
-    }
 
     return (
         <div className="min-h-screen flex flex-col">
