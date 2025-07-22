@@ -1,16 +1,15 @@
+'use client'
 import NavBar from "@/components/NavBar";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from 'next/image'
 import commentsection from "../public/high-quality-comment.jpg"
-import {createClient} from "@/lib/supabase/server";
+import {useAuthStore} from "@/store/useAuthStore";
 
 
-export default async function Home() {
-    const supabase = await createClient();
-    const { data, error } = await supabase.auth.getUser();
-
-  return (
+export default function Home() {
+    const user = useAuthStore((state) => state.user);
+    return (
 
       <main className="min-h-screen w-full flex flex-col mona-sans-regular">
         <NavBar />
@@ -26,7 +25,7 @@ export default async function Home() {
                 <h2 className="mona-sans-regular text-md mt-6 text-center mx-7 sm:mx-0 text-gray-200">Qumment is a plug-and-play comment widget with built-in
                     AI profanity filtering, privacy-centered with no ads</h2>
               <div className="flex gap-4 mt-10">
-                  {!data?.user ? (
+                  {!user ? (
                       <Button asChild size="sm" className="main-color-bg text-md hover:bg-[#6C0E82]">
                           <Link href="/auth/sign-up" className="shadow-inner-lg text-white text-md">Get Started</Link>
                       </Button>
@@ -39,7 +38,6 @@ export default async function Home() {
                       <Link href="/docs" className="text-white">Docs</Link>
                   </Button>
               </div>
-
 
 
           </div>

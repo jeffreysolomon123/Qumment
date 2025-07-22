@@ -13,7 +13,7 @@ export default function Sidebar({ isActivePage }: Props) {
         <div className="mona-sans-regular">
             <div className="px-2 py-3 space-y-2">
                 <SidebarLink
-                    href="/projects"
+                    href="/dashboard/projects"
                     label="Projects"
                     icon={<CirclePlus absoluteStrokeWidth />}
                     isActive={isActivePage === "projects"}
