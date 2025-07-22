@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col mona-sans-regular">
             <NavBar isLogoutVisible={true} />
 
             {/* Responsive wrapper with side space only on large screens */}
