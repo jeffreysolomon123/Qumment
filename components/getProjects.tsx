@@ -14,7 +14,7 @@ interface Project {
     user_id: string;
 }
 
-export default function Projects() {
+export default function     Projects() {
     const user = useAuthStore((state) => state.user);
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
@@ -59,7 +59,7 @@ export default function Projects() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             {projects.map((project) => (
                                 <Link
-                                    href={`/dashboard/projects/${project.slug}/comments`}
+                                    href={`/dashboard/projects/${project.id}/section`}
                                     key={project.id}
                                 >
                                     <Card className="group w-full rounded-lg border-[#2F2F2F] border-2 mona-sans-regular cursor-pointer bg-[#252525] hover:bg-[#292929] hover:border-[#353535] transition-all duration-200">

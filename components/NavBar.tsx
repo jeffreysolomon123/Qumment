@@ -77,7 +77,7 @@ export default function NavBar({ isLogoutVisible }: Props) {
                 ) : (
                     !isLogoutVisible && (
                         <Button asChild size="sm" className="main-color-bg text-md hover:bg-[#6C0E82]">
-                            <Link href="/projects" className="shadow-inner-lg text-white text-md">Dashboard
+                            <Link href="/dashboard/projects" className="shadow-inner-lg text-white text-md">Dashboard
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"
                                      strokeLinejoin="round"

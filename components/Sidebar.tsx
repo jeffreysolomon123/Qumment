@@ -18,18 +18,6 @@ export default function Sidebar({ isActivePage }: Props) {
                     icon={<CirclePlus absoluteStrokeWidth />}
                     isActive={isActivePage === "projects"}
                 />
-                <SidebarLink
-                    href="/comments"
-                    label="Comments"
-                    icon={<MessageSquare absoluteStrokeWidth />}
-                    isActive={isActivePage === "comments"}
-                />
-                <SidebarLink
-                    href="/sections"
-                    label="Comment Sections"
-                    icon={<LayoutPanelTop absoluteStrokeWidth />}
-                    isActive={isActivePage === "sections"}
-                />
             </div>
             <hr />
             <div className="px-2 py-3 space-y-2">

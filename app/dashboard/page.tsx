@@ -3,8 +3,8 @@
 export default async function Dashboard() {
 
     return (
-                    <main>
-                        Main content goes here
-                    </main>
+        <main>
+            Main content goes here
+        </main>
     );
 }
