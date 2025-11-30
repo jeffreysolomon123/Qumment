@@ -7,12 +7,14 @@ import getTimeAgo from "@/utils/getDate"
 import {
     Card,
     CardContent,
-    CardDescription,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
 import { ChevronRight, Plus } from "lucide-react";
 import Link from "next/link";
+
+
+
 
 interface Section {
     id: string;
@@ -24,7 +26,7 @@ interface Section {
 }
 
 // Update the prop to destructure projectId from props
-export default function Sections({ projectId }: { projectId: string }) {
+export default function Sections({ projectSlug }: { projectSlug: string }) {
     const user = useAuthStore((state) => state.user);
     const [sections, setSections] = useState<Section[]>([]);
     const [loading, setLoading] = useState(true);
@@ -37,7 +39,7 @@ export default function Sections({ projectId }: { projectId: string }) {
             const { data, error } = await supabase
                 .from('threads')
                 .select('*')
-                .eq('project_id', projectId);
+                .eq('project_slug', projectSlug);
 
             if (error) {
                 console.error('Error fetching sections:', error.message);
@@ -50,7 +52,7 @@ export default function Sections({ projectId }: { projectId: string }) {
         };
 
         fetchSections();
-    }, [user, projectId]);
+    }, [user, projectSlug]);
 
     return (
         <div className="mt-4 text-white">
@@ -78,7 +80,7 @@ export default function Sections({ projectId }: { projectId: string }) {
                         <div className="flex flex-col w-full gap-4">
                             {sections.map((section) => (
                                 <Link
-                                    href={`/dashboard/projects/${projectId}/comments/${section.identifier}`}
+                                    href={`/dashboard/projects/${projectSlug}/section/${section.identifier}/comments`}
                                     key={section.id}
                                 >
                                     <Card className="group w-full rounded-lg border-[#2F2F2F] border-2 mona-sans-regular cursor-pointer bg-[#252525] hover:bg-[#292929] hover:border-[#353535] transition-all duration-200">
@@ -112,7 +114,7 @@ export default function Sections({ projectId }: { projectId: string }) {
 
                         </div>
                     ) : (
-                        <Link href={`/dashboard/projects/${projectId}/new-section`}>
+                        <Link href={`/dashboard/projects/${projectSlug}/new-section`}>
                             <Card className="group pt-7 pb-6 w-full rounded-lg border-[#2F2F2F] border-2 mona-sans-regular cursor-pointer bg-[#252525] hover:bg-[#292929] hover:border-[#353535] transition-all duration-200">
                                 <div className="flex items-center justify-center gap-3 flex-col">
                                     <Plus className="text-3xl scale-110" />

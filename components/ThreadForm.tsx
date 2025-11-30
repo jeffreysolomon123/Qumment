@@ -11,6 +11,7 @@ interface ThreadFormProps {
 
 export function ThreadForm({ projectId }: ThreadFormProps) {
     const [threadTitle, setThreadTitle] = useState("");
+
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [isPending, startTransition] = useTransition();
@@ -26,6 +27,10 @@ export function ThreadForm({ projectId }: ThreadFormProps) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ title: threadTitle, projectId }),
             });
+
+
+
+
 
             const result = await res.json();
 
@@ -66,5 +71,14 @@ export function ThreadForm({ projectId }: ThreadFormProps) {
             </Button>
             {message && <p className="text-sm text-center mt-2">{message}</p>}
         </form>
+
+
+
+
+
+
+
+
+
     );
 }

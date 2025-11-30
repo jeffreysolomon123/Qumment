@@ -16,7 +16,7 @@ export default function Sidebar({ isActivePage }: Props) {
                     href="/dashboard/projects"
                     label="Projects"
                     icon={<CirclePlus absoluteStrokeWidth />}
-                    isActive={isActivePage === "projects"}
+                    isActive={isActivePage === "/dashboard/projects"}
                 />
             </div>
             <hr />
