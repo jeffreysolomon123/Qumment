@@ -1,13 +1,15 @@
-import { notFound } from "next/navigation";
+// app/dashboard/projects/[projectSlug]/section/page.tsx
+
 import Sections from "@/components/getSections";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-type Props = { params: { projectSlug: string } };
+type Props = {
+  params: Promise<{ projectSlug: string }>;
+};
 
-export default async function CommentsPage(props: Props | Promise<Props>) {
-  const { params } = await props;
-  const { projectSlug } = params;
+export default async function CommentsPage({ params }: Props) {
+  const { projectSlug } = await params; // ✅ await params directly
 
   return (
     <div className="text-white">

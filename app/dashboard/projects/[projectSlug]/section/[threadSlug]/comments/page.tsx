@@ -1,17 +1,23 @@
-import { Qumment } from "@/components/Comments";
-import { Button } from "@/components/ui/button";
+// app/dashboard/projects/[projectSlug]/section/[threadSlug]/comments/page.tsx
+
+import QummentCommentsClient from "./QummentCommentsClient";
+
 interface Props {
-  params: {
+  params: Promise<{
     projectSlug: string;
     threadSlug: string;
-  };
+  }>;
 }
 
 export default async function CommentsPage({ params }: Props) {
-  const { projectSlug, threadSlug } = await params; // ← Add await
+  const { projectSlug, threadSlug } = await params; // ✅ await params
+
   return (
-    <div className="m-0">
-      <Qumment projectSlug={projectSlug} threadSlug={threadSlug} />
+    <div className="m-0 h-screen bg-white">
+      <QummentCommentsClient
+        projectSlug={projectSlug}
+        threadSlug={threadSlug}
+      />
     </div>
   );
 }
