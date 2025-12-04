@@ -3,17 +3,12 @@ import Sections from "@/components/getSections";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-type ParamsShape = {
-  params: {
-    projectSlug: string;
-  };
-};
+type ParamsShape = Promise<{
+  projectSlug: string;
+}>;
 
-export default async function CommentsPage(
-  paramsPromise: Promise<ParamsShape>
-) {
-  const { params } = await paramsPromise; // await the Promise param
-  const { projectSlug } = params;
+export default async function CommentsPage(props: { params: ParamsShape }) {
+  const { projectSlug } = await props.params;
 
   return (
     <div className="text-white">
