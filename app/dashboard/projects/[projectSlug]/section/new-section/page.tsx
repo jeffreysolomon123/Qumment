@@ -1,15 +1,21 @@
 import { ThreadForm } from "@/components/ThreadForm";
 
-type Props = { params: { projectSlug: string } };
+type ParamsShape = {
+  params: {
+    projectSlug: string;
+  };
+};
 
-export default async function NewSectionPage(props: Props | Promise<Props>) {
-  const { params } = await props;
-  const projectId = params.projectSlug;
+export default async function NewSectionPage(
+  paramsPromise: Promise<ParamsShape>
+) {
+  const { params } = await paramsPromise;
+  const { projectSlug } = params;
   return (
     <div className="flex flex-col justify-center items-center h-1/3 md:h-full">
       <h1 className="">Enter Comment Section name: </h1>
-      <h2>{projectId}</h2>
-      <ThreadForm projectId={projectId} />
+      <h2>{projectSlug}</h2>
+      <ThreadForm projectId={projectSlug} />
     </div>
   );
 }

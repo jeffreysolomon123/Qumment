@@ -1,15 +1,19 @@
 // app/dashboard/projects/[projectSlug]/section/page.tsx
-
 import Sections from "@/components/getSections";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-type Props = {
-  params: Promise<{ projectSlug: string }>;
+type ParamsShape = {
+  params: {
+    projectSlug: string;
+  };
 };
 
-export default async function CommentsPage({ params }: Props) {
-  const { projectSlug } = await params; // ✅ await params directly
+export default async function CommentsPage(
+  paramsPromise: Promise<ParamsShape>
+) {
+  const { params } = await paramsPromise; // await the Promise param
+  const { projectSlug } = params;
 
   return (
     <div className="text-white">

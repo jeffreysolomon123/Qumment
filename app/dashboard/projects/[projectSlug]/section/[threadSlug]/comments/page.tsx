@@ -1,3 +1,4 @@
+"use client";
 // app/dashboard/projects/[projectSlug]/section/[threadSlug]/comments/page.tsx
 
 import QummentCommentsClient from "./QummentCommentsClient";
